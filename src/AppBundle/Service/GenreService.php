@@ -27,27 +27,18 @@ class GenreService
         $this->allGenre = null;
     }
 
-    /**
-     * TODO:// usuń funkcje jeśli będzie nie przydatna
-     * @param Genre $genre
-
-    public function saveGenre(Genre $genre): void
-    {
-        if($genre != null)
-        {
-            $this->em->persist($genre);
-        }
-    }
 
     /**
-     *
+     * Checks if genre table contains this genre
+     * @param string $genre
+     * @return bool
      */
     public function contains(string $genre): bool
     {
         if ($this->allGenre == null ) $this->allGenre = $this->em->getRepository('AppBundle:Genre')->findAll();
         foreach ( $this->allGenre as $genreFromDatabase)
         {
-            if ($genreFromDatabase->getName() == $genre )return true;
+            if (strtolower($genreFromDatabase->getName()) == $genre )return true;
         }
         return false;
     }

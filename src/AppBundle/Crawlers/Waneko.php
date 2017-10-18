@@ -108,7 +108,7 @@ class Waneko implements IMangaCrawler
         $genres = explode(',',substr($genreText,strrpos($genreText,":")+1));
         foreach ($genres as &$genre)
         {
-            $genre = ucfirst(strtolower(trim($genre)));
+            $genre = strtolower(trim($genre));
             if($genre != "" && !$this->genreService->contains($genre)) {
                 $this->prepareGenreToSaveAndSaveIt($genre);
             }
@@ -135,24 +135,23 @@ class Waneko implements IMangaCrawler
 
     }
 
+    /**
+     *TODO:// Finish this function
+     * @return Status
+     */
     public function getStatus():Status
     {
         $statusService = new StatusService($this->em);
-        /*$status = $this->crawler->filter('#mangaproperties table tr:nth-child(4) td')->last()->text();
-        if($existingStatus = $statusService->getStatusByStatusName($status))
-        {
-            return $existingStatus;
-        }*/
 
         $newStatus = $this->em->getRepository('AppBundle:Status')->find(1);
-        #$newStatus = new Status();
-        #$newStatus->setStatus(ucfirst(strtolower($status)));
 
-        #$this->em->persist($newStatus);
-        #$this->em->flush();
         return $newStatus;
     }
 
+    /**
+     * Crawlers all volumes from the main crawler
+     * @return array
+     */
     private function getVolumes():array
     {
         $volumes = $this->crawler->filter('.related-toms')->children()->each(
@@ -172,6 +171,10 @@ class Waneko implements IMangaCrawler
         return $volumes;
     }
 
+    /**
+     * Finds Author from the first volume of the manga
+     * @return string
+     */
     private function getAuthor():string
     {
         $client = new Client();
