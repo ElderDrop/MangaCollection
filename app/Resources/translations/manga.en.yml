@@ -1,0 +1,7 @@
+manga:
+  title: "Title"
+  author: "Author"
+  status: "Status"
+  views: "Views"
+  action: "Action"
+  createNew: "Create a new manga"

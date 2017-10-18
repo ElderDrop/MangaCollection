@@ -1,0 +1,14 @@
+.volumes-cards{
+    width: 20%;
+    box-sizing: border-box;
+    flex-grow: 1;
+
+}
+.volume-container{
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-grow: 1;
+}

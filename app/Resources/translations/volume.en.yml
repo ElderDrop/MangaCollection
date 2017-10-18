@@ -1,0 +1,5 @@
+volume:
+  owned: "You own this volume"
+  notOwned: "You don't own this volume"
+  notLogedIn: "You must be logged to change state"
+  releaseDate: "Release date"

@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ manga.title }}
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+{% block body %}
+    <h1>Manga</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ manga.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ manga.title }}</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>{{ manga.author }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ manga.status }}</td>
+            </tr>
+            <tr>
+                <th>Views</th>
+                <td>{{ manga.views }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="volume-container">
+        {% for volume in volumes %}
+            <div class="card volumes-cards">
+                <h4 class="card-title card-header">{{ manga.title }}: {{ volume.number }}</h4>
+                <div class="card-body">
+
+                    <h6 class="card-subtitle mb-2 text-muted">{{ "volume.releaseDate"|trans({},"volume") }}</h6>
+                    <p class="card-text">{{ volume.releaseDate|date("d/m/Y") }}</p>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        {% if app.user.haveVolume(volume) %}
+                            <div class="alert alert-success">
+                                {{ "volume.owned"|trans({},'volume') }}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-danger">
+                                {{ "volume.notOwned"|trans({},'volume') }}
+                            </div>
+                        {% endif %}
+                        {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <form action="{{ path("change_state",{'manga': manga.id, 'volume': volume.id })}}">
+                                <input type="submit" class="btn" value="Change State"></input>
+                            </form>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <ul>
+        <li>
+            <a href="{{ path('manga_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('manga_edit', { 'id': manga.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
