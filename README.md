@@ -1,1 +1,3 @@
-# MangaCollection
+MangaCollection web app
+======================
+
