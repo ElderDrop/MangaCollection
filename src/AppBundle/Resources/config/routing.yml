@@ -1,0 +1,9 @@
+manga:
+  prefix: /manga
+  resource: "routing/mangaRouting.yml"
+volume:
+  prefix: /
+  resource: "routing/volumeRouting.yml"
+genre:
+  prefix: /genre
+  resource: "routing/genreRouting.yml"

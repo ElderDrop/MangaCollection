@@ -61,6 +61,8 @@ class Waneko implements IMangaCrawler
         $manga->setTitle($this->getTitle());
         $manga->setAuthor($this->getAuthor());
         $manga->addGenres($this->getGenres(new GenreService($this->em)));
+        //$co = new ConsoleOutput();
+        //$co->writeln($manga->getGenres());
         $manga->addStatus($this->getStatus());
         $manga->addVolumes($this->getVolumes());
         $manga->setUrl($this->urlString);
@@ -108,6 +110,7 @@ class Waneko implements IMangaCrawler
         $genres = explode(',',substr($genreText,strrpos($genreText,":")+1));
         foreach ($genres as &$genre)
         {
+            // TODO:// Toos this part to genre object / repository
             $genre = strtolower(trim($genre));
             if($genre != "" && !$this->genreService->contains($genre)) {
                 $this->prepareGenreToSaveAndSaveIt($genre);

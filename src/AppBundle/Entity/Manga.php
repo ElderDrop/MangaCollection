@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 /**
  * Manga
@@ -208,13 +209,20 @@ class Manga
         $this->genres[] = $genre;
     }
 
+    /**
+     * @param array|null $genres
+     * @return null
+     */
     public function addGenres(?array $genres)
     {
+        $co = new ConsoleOutput();
+        $co->writeln("hi");
         if(is_null($genres)) return null;
         foreach ($genres as $genre)
         {
             $genre->addManga($this);
             $this->genres[] = $genre;
+            $co->writeln($genre->getName());
         }
 
     }

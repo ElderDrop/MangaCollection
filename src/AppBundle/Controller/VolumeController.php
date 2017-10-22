@@ -9,13 +9,16 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\Console\Output\ConsoleOutput;
+
 
 class VolumeController extends Controller
 {
     /**
      * Change state of the volume
-     * @Route("{manga}/changeState/{volume}", name="change_state")
+     *
+     * Route("{manga}/changeState/{volume}", name="change_state")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     *
      * @param Manga $manga
      * @param Volume $volume
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -35,7 +38,6 @@ class VolumeController extends Controller
             $em->persist($user);
             $em->flush();
         }
-
 
 
         return $this->redirectToRoute("manga_show",array('id' => $manga->getId()));

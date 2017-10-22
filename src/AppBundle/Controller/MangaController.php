@@ -21,15 +21,15 @@ use Symfony\Component\Validator\Constraints\Url;
 /**
  * Manga controller.
  *
- * @Route("manga")
+ * Route("manga")
  */
 class MangaController extends Controller
 {
     /**
      * Lists all manga entities.
      *
-     * @Route("/", name="manga_index")
-     * @Method("GET")
+     * Route("/", name="manga_index")
+     * Method("GET")
      */
     public function indexAction()
     {
@@ -89,8 +89,8 @@ class MangaController extends Controller
     /**
      * Finds and displays a manga entity.
      *
-     * @Route("/{id}", name="manga_show")
-     * @Method("GET")
+     * Route("/{id}", name="manga_show")
+     * Method("GET")
      */
     public function showAction(Manga $manga)
     {
@@ -108,8 +108,8 @@ class MangaController extends Controller
     /**
      * Displays a form to edit an existing manga entity.
      *
-     * @Route("/{id}/edit", name="manga_edit")
-     * @Method({"GET", "POST"})
+     * Route("/{id}/edit", name="manga_edit")
+     * Method({"GET", "POST"})
      * @Security("is_granted('ROLE_ADMIN')")
      */
     public function editAction(Request $request, Manga $manga)
@@ -134,8 +134,8 @@ class MangaController extends Controller
     /**
      * Deletes a manga entity.
      *
-     * @Route("/{id}", name="manga_delete")
-     * @Method("DELETE")
+     * Route("/{id}", name="manga_delete")
+     * Method("DELETE")
      * @Security("is_granted('ROLE_ADMIN')")
      */
     public function deleteAction(Request $request, Manga $manga)

@@ -1,0 +1,6 @@
+change_state:
+    path: /{manga}/changeState/{volume}
+    methods: [GET,POST]
+    requirements:
+            id: '\d+'
+    defaults: { _controller: AppBundle:Volume:changeState}

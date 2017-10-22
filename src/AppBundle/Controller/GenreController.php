@@ -10,15 +10,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Genre controller.
  *
- * @Route("genre")
+ * Route("genre")
  */
 class GenreController extends Controller
 {
     /**
      * Lists all genre entities.
      *
-     * @Route("/", name="genre_index")
-     * @Method("GET")
+     * Route("/", name="genre_index")
+     * Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +34,8 @@ class GenreController extends Controller
     /**
      * Creates a new genre entity.
      *
-     * @Route("/new", name="genre_new")
-     * @Method({"GET", "POST"})
+     * Route("/new", name="genre_new")
+     * Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +60,8 @@ class GenreController extends Controller
     /**
      * Finds and displays a genre entity.
      *
-     * @Route("/{id}", name="genre_show")
-     * @Method("GET")
+     * Route("/{id}", name="genre_show")
+     * Method("GET")
      */
     public function showAction(Genre $genre)
     {
@@ -76,8 +76,8 @@ class GenreController extends Controller
     /**
      * Displays a form to edit an existing genre entity.
      *
-     * @Route("/{id}/edit", name="genre_edit")
-     * @Method({"GET", "POST"})
+     * Route("/{id}/edit", name="genre_edit")
+     * Method({"GET", "POST"})
      */
     public function editAction(Request $request, Genre $genre)
     {
@@ -101,8 +101,8 @@ class GenreController extends Controller
     /**
      * Deletes a genre entity.
      *
-     * @Route("/{id}", name="genre_delete")
-     * @Method("DELETE")
+     * Route("/{id}", name="genre_delete")
+     * Method("DELETE")
      */
     public function deleteAction(Request $request, Genre $genre)
     {

@@ -1,0 +1,30 @@
+genre_index:
+  path: /
+  methods: [GET,POST]
+  defaults: { _controller: AppBundle:Genre:index}
+
+genre_show:
+  path: /{id}
+  methods: [GET,POST]
+  requirements:
+          id: '\d+'
+  defaults: { _controller: AppBundle:Genre:show}
+
+genre_new:
+  path: /new
+  methods: [GET,POST]
+  defaults: { _controller: AppBundle:Genre:new}
+
+genre_edit:
+  path: /{id}/edit
+  methods: [GET,POST]
+  requirements:
+          id: '\d+'
+  defaults: { _controller: AppBundle:Genre:edit}
+
+genre_delete:
+  path: /{id}
+  methods: [DELETE]
+  requirements:
+          id: '\d+'
+  defaults: { _controller: AppBundle:Genre:delete}

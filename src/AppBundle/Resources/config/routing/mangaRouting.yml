@@ -1,0 +1,23 @@
+manga_index:
+  path: /
+  methods: [GET,POST]
+  defaults: { _controller: AppBundle:Manga:index}
+
+manga_show:
+  path: /{id}
+  methods: [GET,POST]
+  requirements:
+          id: '\d+'
+  defaults: { _controller: AppBundle:Manga:show}
+manga_edit:
+  path: /{id}/edit
+  methods: [GET,POST]
+  requirements:
+          id: '\d+'
+  defaults: { _controller: AppBundle:Manga:edit}
+manga_delete:
+  path: /{id}
+  methods: [DELETE]
+  requirements:
+          id: '\d+'
+  defaults: { _controller: AppBundle:Manga:delete}

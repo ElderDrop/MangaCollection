@@ -12,10 +12,6 @@
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ manga.id }}</td>
-            </tr>
-            <tr>
                 <th>Title</th>
                 <td>{{ manga.title }}</td>
             </tr>
@@ -28,8 +24,10 @@
                 <td>{{ manga.status }}</td>
             </tr>
             <tr>
-                <th>Views</th>
-                <td>{{ manga.views }}</td>
+                <th>Genre</th>
+                <td>{% for genre in manga.genres %}
+                        {{ genre.name }},
+                    {% endfor %}</td>
             </tr>
         </tbody>
     </table>
@@ -53,7 +51,7 @@
                         {% endif %}
                         {% if is_granted('IS_AUTHENTICATED_FULLY')%}
                             <form action="{{ path("change_state",{'manga': manga.id, 'volume': volume.id })}}">
-                                <input type="submit" class="btn" value="Change State"></input>
+                                <input type="submit" class="btn" value="Change State"/>
                             </form>
                         {% endif %}
                     {% endif %}
@@ -65,13 +63,15 @@
         <li>
             <a href="{{ path('manga_index') }}">Back to the list</a>
         </li>
-        <li>
-            <a href="{{ path('manga_edit', { 'id': manga.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
+        {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+            <li>
+                <a href="{{ path('manga_edit', { 'id': manga.id }) }}">Edit</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+            </li>
+        {% endif %}
     </ul>
 {% endblock %}
