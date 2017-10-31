@@ -19,7 +19,6 @@ use AppBundle\Service\GenreService;
 use AppBundle\Service\StatusService;
 use Doctrine\ORM\EntityManager;
 use Goutte\Client;
-use Symfony\Component\Console\Output\ConsoleOutput;
 use \Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Validator\Constraints\DateTime;
 
@@ -61,8 +60,6 @@ class Waneko implements IMangaCrawler
         $manga->setTitle($this->getTitle());
         $manga->setAuthor($this->getAuthor());
         $manga->addGenres($this->getGenres(new GenreService($this->em)));
-        //$co = new ConsoleOutput();
-        //$co->writeln($manga->getGenres());
         $manga->addStatus($this->getStatus());
         $manga->addVolumes($this->getVolumes());
         $manga->setUrl($this->urlString);

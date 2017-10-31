@@ -215,14 +215,11 @@ class Manga
      */
     public function addGenres(?array $genres)
     {
-        $co = new ConsoleOutput();
-        $co->writeln("hi");
         if(is_null($genres)) return null;
         foreach ($genres as $genre)
         {
             $genre->addManga($this);
             $this->genres[] = $genre;
-            $co->writeln($genre->getName());
         }
 
     }

@@ -39,13 +39,26 @@ class WanekoTest extends WebTestCase
     }
 
     /**
+     * @dataProvider urlsProvider
+     * @param string $url
+     * @param string $wantedTitle
+     */
+    public function testTitle(string $url,string $wantedTitle)
+    {
+        $waneko = new Waneko($url,$this->em);
+        $wantedTitle = ucfirst(strtolower($wantedTitle));
+
+        $this->assertEquals($wantedTitle, $waneko->getManga()->getTitle());
+    }
+
+    /**
      * Providers
      */
     public function urlsProvider()
     {
         return array(
-            array('http://waneko.pl/nasze-mangi/?manga_id=146'),
-            array('http://waneko.pl/nasze-mangi/?manga_id=94'),
+            array('http://waneko.pl/nasze-mangi/?manga_id=146',"ACONY"),
+            array('http://waneko.pl/nasze-mangi/?manga_id=94',"ORANGE"),
         );
     }
 

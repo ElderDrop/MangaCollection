@@ -71,11 +71,12 @@ class MangaController extends Controller
                     $em->persist($manga);
                     $em->flush();
                 }
+                return $this->redirectToRoute('manga_show',array('id' => $manga->getId()));
             }
             catch (Exception $exception){
                 $error = $exception->getMessage();
             }
-            //TODO: Redirect to manga_show with new manga
+
             
         }
 

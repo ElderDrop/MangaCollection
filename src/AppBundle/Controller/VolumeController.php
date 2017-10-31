@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 
 class VolumeController extends Controller
@@ -27,18 +28,18 @@ class VolumeController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        //TODO: create voter MUST HAVE
-        if($user->getVolumes()->contains($volume)){
-            $user->popVolume($volume);
-            $em->persist($user);
-            $em->flush();
+        //TODO: create Voter MUST HAVE
+        if($volume != null and $volume->getReleaseDate()->diff(new \DateTime("now"))->format('%R') != "-" ) {
+            if ($user->getVolumes()->contains($volume)) {
+                $user->popVolume($volume);
+                $em->persist($user);
+                $em->flush();
+            } else {
+                $user->addVolume($volume);
+                $em->persist($user);
+                $em->flush();
+            }
         }
-        else{
-            $user->addVolume($volume);
-            $em->persist($user);
-            $em->flush();
-        }
-
 
         return $this->redirectToRoute("manga_show",array('id' => $manga->getId()));
     }
