@@ -4,8 +4,6 @@ Basic manga mage system. Where you can change state of volume(if you own it)
 
 ======================
 
-Upcoming
+Abandoned !!!!!
 
-*REST
-*MORE MORE MORE TESTS
-
+Making v2 version in Symfony 4 :D
